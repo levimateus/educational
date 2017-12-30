@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<title>Bem vindo</title>
-</head>
-<body>
-	<h1>Seja bem vindo ao sistema de controle educacional</h1>
-	<p>O sistema de controle educacional permite receber atividades dos alunos e aplicar testes online. Você pode, também, atribuir notas às atividades, as quais poderão ser vistas pelos alunos</p>
-</body>
-</html>
+<?php 
+	ob_end_clean();
+	$title = 'Bem vindo';
+	include 'template/header.php';
+?>
+<!-- *********************************************************** -->
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="./">Sistema Educacional</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- *********************************************************** -->
+<?php include 'template/footer.php';?>

@@ -9,7 +9,7 @@ class Routes extends MainRoute
 		parent::__construct($uri);
 
 		$this->get('/', 'WelcomeController');
-		$this->get('/redirect', 'WelcomeController', 'redirecionar');
+		$this->get('/redirecionar', 'WelcomeController', 'redirecionar');
 		$this->get('/funcionou', 'WelcomeController', 'funcionou');
 
 		//do not remove

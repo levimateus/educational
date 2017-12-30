@@ -9,7 +9,7 @@ class Controller
 	public function view($view){
 		$view = rtrim($view);
 
-		$file = __DIR__.'/../src/views/'.$view.'.php';
+		$file = PROJECT_VIEWS_DIR.$view.'.php';
 
 		if (file_exists($file)) {
 			include($file);

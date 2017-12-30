@@ -1,0 +1,16 @@
+{
+    "name": "Educational",
+    "description": "Sistema de controle de atividades entre professores a alunos",
+    "authors": [
+        {
+            "name": "Mateus Levi",
+            "email": "levimateus2011@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    }
+}

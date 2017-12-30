@@ -18,7 +18,7 @@ use Src\Models\User;
  		$user = new User();
  		$user->setName('Mateus');
  		$user->setAge('20');
-
+ 		
  		$name = $user->getName();
  		$age = $user->getAge();
 

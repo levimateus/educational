@@ -4,8 +4,10 @@ namespace Core;
 
 use Src\Routes;
 
-class Controller
+abstract class Controller
 {
+	private $attribute = 0;
+
 	public function view($view){
 		$view = rtrim($view);
 
@@ -14,11 +16,16 @@ class Controller
 		if (file_exists($file)) {
 			include($file);
 		} else {
-			echo "Error";
+			$this->internalServerErrorHttpStatus();
 		}
 	}
 
 	public function redirect($uri){
 		header('Location: /educational'.$uri);
+	}
+
+	public function internalServerErrorHttpStatus(){
+		header('HTTP/1.1 500 Internal Server Error');
+		return null;
 	}
 }

@@ -8,9 +8,8 @@ class Routes extends MainRoute
 	function __construct($uri = null){
 		parent::__construct($uri);
 
-		$this->get('/', 'WelcomeController');
-		$this->get('/redirecionar', 'WelcomeController', 'redirecionar');
-		$this->get('/funcionou', 'WelcomeController', 'funcionou');
+		$this->call('/', 'LoginController');
+		$this->call('/login', 'LoginController', 'authenticate');
 
 		//do not remove
 		$this->notFoundHttpStatus();

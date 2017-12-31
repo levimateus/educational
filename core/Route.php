@@ -3,7 +3,7 @@ namespace Core;
 
 use Src\Controllers as Controllers;
 
-class Route
+abstract class Route
 {
 	private $uri;
 
@@ -19,7 +19,7 @@ class Route
 		}
 	}
 
-	public function get($uri, $controller, $method = null){
+	public function call($uri, $controller, $method = null){
 		if ($this->uri == $uri) {
 			$requestUri = explode('/', $this->uri);
 			$uri = explode('/', $uri);
@@ -60,7 +60,8 @@ class Route
 
 	public function callControllerMethod($class, $method){
 		if (method_exists($class, $method)){
-			return call_user_func(array($class, $method));
+			$object = new $class;
+			return call_user_func(array($object, $method));
 		} else {
 			$this->internalServerErrorHttpStatus();
 			return null;

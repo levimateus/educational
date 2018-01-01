@@ -1,6 +1,8 @@
 <?php 
 namespace Core;
 
+use \PDO;
+
 class DBConnection
 {
 	private $dbDriver;
@@ -15,7 +17,7 @@ class DBConnection
 		$dbDriver = PROJECT_DBDRIVER,
 		$dbName = PROJECT_DBNAME,
 		$dbPassword = PROJECT_DBPASSWORD,
-		$dbUserName = PROJECT_DBNAME,
+		$dbUserName = PROJECT_DBUSER,
 		$hostName = PROJECT_DBHOST
 	){
 		$this->setDbDriver($dbDriver);
@@ -70,10 +72,10 @@ class DBConnection
 	}
 
 	public function connect(){
-		$dsn = $this->getDbDriver().':dbname='.$this->getDbName().';host='.$this->getHostName();
+		$dsn = $this->getDbDriver().':host='.$this->getHostName().';dbname='.$this->getDbName();
 		
 		try {
-			$connection = new PDO($dsn, $this->getDbUserName, $this->getDbPassword);
+			$connection = new PDO($dsn, $this->getDbUserName(), $this->getDbPassword());
 			$this->connection =  $connection;
 		} catch (Exception $e) {
 			return $e;

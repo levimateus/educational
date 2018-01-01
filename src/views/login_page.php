@@ -10,7 +10,7 @@
 		<h2 align="center">Caderno Digital</h2>
 	</div>
 	<div class="card mx-auto p-4 mt-3" style="max-width: 350px;">
-		<form action="./login" method="post">
+		<form action="./authenticate" method="post">
 			<div class="form-group">
 				<label for="">Login:</label>
 				<input type="text" name="login" class="form-control" autofocus="autofocus" placeholder="Nome de usuário">

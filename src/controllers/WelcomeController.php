@@ -7,7 +7,12 @@ use Src\Models as Models;
  class WelcomeController extends MainController
  {
  	function index(){
-		$this->view('welcome');
+ 		if ($this->verifySession('user') == false) {
+ 			$this->redirect('/login');
+ 			return true;
+ 		}
+
+		$this->view('home');
 		$course = new Models\Course();
 		$lesson = new Models\Lesson();
 		$matter = new Models\Matter();

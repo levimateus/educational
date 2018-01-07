@@ -8,12 +8,28 @@ class Routes extends MainRoute
 	function __construct($uri = null){
 		parent::__construct($uri);
 
-		$this->call('/', 'WelcomeController');
-		$this->call('/login', 'LoginController');
-		$this->call('/authenticate', 'LoginController', 'authenticate');
-		$this->call('/logout', 'LoginController', 'logout');
-		$this->call('/register', 'RegisterController');
-		$this->call('/create_user', 'RegisterController', 'createUser');
+		$this->call('/', 'AuthController');
+
+		//authentication routes
+		$this->call('/login', 'AuthController', 'login');
+		$this->call('/logout', 'AuthController', 'logout');
+		$this->call('/authenticate', 'AuthController', 'authenticate');
+
+		//user routes
+		$this->call('/user/register', 'UserController');
+		$this->call('/user/store', 'UserController', 'store');
+		$this->call('/user/manage', 'UserController', 'manage');
+
+		//course routes
+		$this->call('/course/register', 'CourseController');
+		$this->call('/course/store', 'CourseController', 'store');
+		$this->call('/course/manage', 'CourseController', 'manage');
+		$this->call('/course', 'CourseController', 'show');
+
+		//matter routes
+		$this->call('/matter/store', 'MatterController', 'store');
+		$this->call('/matter', 'MatterController', 'show');
+
 
 		//do not remove
 		$this->notFoundHttpStatus();

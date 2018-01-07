@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Jan-2018 às 19:33
+-- Generation Time: 02-Jan-2018 às 16:28
 -- Versão do servidor: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -32,6 +32,7 @@ CREATE TABLE `courses` (
   `id` int(11) UNSIGNED NOT NULL,
   `creation_date` datetime NOT NULL,
   `name` varchar(256) NOT NULL,
+  `description` varchar(5000) DEFAULT NULL,
   `user_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -44,7 +45,7 @@ CREATE TABLE `courses` (
 CREATE TABLE `lessons` (
   `id` int(11) UNSIGNED NOT NULL,
   `creation_date` datetime NOT NULL,
-  `description` varchar(10000) DEFAULT NULL,
+  `description` varchar(5000) DEFAULT NULL,
   `title` varchar(256) NOT NULL,
   `topic_id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL
@@ -62,6 +63,7 @@ CREATE TABLE `matters` (
   `halfyear` int(1) NOT NULL,
   `matter_key` varchar(64) DEFAULT NULL,
   `name` varchar(256) NOT NULL,
+  `description` varchar(5000) DEFAULT NULL,
   `matter_year` year(4) NOT NULL,
   `course_id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL

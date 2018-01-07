@@ -19,17 +19,19 @@ abstract class Route
 		}
 	}
 
-	public function call($uri, $controller, $method = null){
-		if ($this->uri == $uri) {
-			$requestUri = explode('/', $this->uri);
-			$uri = explode('/', $uri);
+	protected function call($uri, $controller, $method = null){
+			$requestUri = explode('-', $this->uri);
+
+		if ($requestUri[0] == $uri) {
+
+			$argument = isset($requestUri[1]) ? $requestUri[1] : null;
 			
-			$loaded = $this->loadController($controller, $method);
+			$loaded = $this->loadController($controller, $method, $argument);
 			exit();
 		}
 	}
 
-	private function loadController($controller, $method = null){
+	protected function loadController($controller, $method = null, $argument = null){
 		if (isset($controller)) {
 			$controller = rtrim($controller);
 
@@ -38,9 +40,9 @@ abstract class Route
 
 			if (file_exists($file) && class_exists($class)) {
 				if (isset($method)) {
-					return $this->callControllerMethod($class, $method);
+					return $this->callControllerMethod($class, $method, $argument);
 				} else {
-					return $this->callControllerMethod($class, 'index');
+					return $this->callControllerMethod($class, 'index', $argument);
 				}
 			} else {
 				return $this->internalServerErrorHttpStatus();
@@ -48,20 +50,20 @@ abstract class Route
 		}	
 	}
 
-	public function notFoundHttpStatus(){
+	protected function notFoundHttpStatus(){
 		header("HTTP/1.0 404 Not Found");
 		return null;
 	}
 
-	public function internalServerErrorHttpStatus(){
+	protected function internalServerErrorHttpStatus(){
 		header('HTTP/1.1 500 Internal Server Error');
 		return null;
 	}
 
-	public function callControllerMethod($class, $method){
+	protected function callControllerMethod($class, $method, $argument = null){
 		if (method_exists($class, $method)){
 			$object = new $class;
-			return call_user_func(array($object, $method));
+			return call_user_func(array($object, $method), $argument);
 		} else {
 			$this->internalServerErrorHttpStatus();
 			return null;

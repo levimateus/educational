@@ -1,11 +1,13 @@
-<?php 
+<?php
 namespace Core;
 
+use Core\Model;
+use Core\DBConnection;
 use \PDO;
 
-class DBConnection
+abstract class DAO
 {
-	private $dbDriver;
+private $dbDriver;
 	private $dbName;
 	private $dbPassword;
 	private $dbUserName;
@@ -25,6 +27,26 @@ class DBConnection
 		$this->setDbPassword($dbPassword);
 		$this->setDbUserName($dbUserName);
 		$this->setHostName($hostName);
+
+		$this->connect();
+	}
+
+	private function connect(){
+		$dsn = $this->getDbDriver().':host='.$this->getHostName().';dbname='.$this->getDbName();
+		
+		try {
+			$connection = new PDO($dsn, $this->getDbUserName(), $this->getDbPassword(),
+				array(
+	                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+	                PDO::ATTR_PERSISTENT => false,
+	                PDO::ATTR_EMULATE_PREPARES => false,
+	                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+	            )
+			);
+			$this->connection =  $connection;
+		} catch (Exception $e) {
+			return $e;
+		}
 	}
 
 	public function getDbDriver(){
@@ -69,16 +91,5 @@ class DBConnection
 
 	public function getConnection(){
 		return $this->connection;
-	}
-
-	public function connect(){
-		$dsn = $this->getDbDriver().':host='.$this->getHostName().';dbname='.$this->getDbName();
-		
-		try {
-			$connection = new PDO($dsn, $this->getDbUserName(), $this->getDbPassword());
-			$this->connection =  $connection;
-		} catch (Exception $e) {
-			return $e;
-		}
 	}
 }

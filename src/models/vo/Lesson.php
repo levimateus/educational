@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Models;
+namespace Src\Models\VO;
 
 use Core\Model as MainModel;
 

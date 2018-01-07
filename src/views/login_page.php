@@ -1,7 +1,7 @@
 <?php 
 	ob_end_clean();
 	$title = 'Caderno Digital';
-	include 'template/header.php';
+	include PROJECT_VIEWS_DIR.'template/header.php';
 ?>
 
 <div class="container">
@@ -10,12 +10,15 @@
 		<h2 align="center">Caderno Digital</h2>
 	</div>
 	<div class="card mx-auto p-4 mt-3" style="max-width: 350px;">
-		<form action="./authenticate" method="post">
+		<form action="<?php buildUrl('/authenticate');?>" method="post">
 			<div class="form-group">
-				<label for="">Login:</label>
-				<input type="text" name="login" class="form-control" autofocus="autofocus" placeholder="Nome de usuário">
-				<label for="">Senha:</label>
-				<input type="password" name="password" class="form-control" placeholder="Digite sua senha">
+				<?php if($param == 'fail'): ?>
+					<p class="text-danger text-center">Usuário ou senha incorretos</p>
+				<?php endif; ?>
+				<label for="login">Login:</label>
+				<input type="email" name="login" id="login" class="form-control" autofocus="autofocus" placeholder="Nome de usuário" required="required">
+				<label for="password">Senha:</label>
+				<input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" required="required">
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-info btn-block" value="Entrar"><br>
@@ -27,4 +30,4 @@
 	</div>
 </div>
 
-<?php include 'template/footer.php';?>
+<?php include PROJECT_VIEWS_DIR.'template/footer.php';?>

@@ -1,12 +1,9 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
+require 'core/Autoload.php';
 require 'vendor/autoload.php';
 require_once 'src/config.php';
-
-spl_autoload_register(function($class){
-	require_once(str_replace('\\', '/', $class.'.php'));
-});
 
 function buildUrl($url){
 	$root = explode('/', $_SERVER['PHP_SELF']);

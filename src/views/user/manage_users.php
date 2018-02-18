@@ -29,8 +29,8 @@
 				<td><?php echo $course['user_name']; ?></td>
 				<td><?php echo $course['creation_date']; ?></td>
 				<td>
-					<button class="btn btn-warning">Editar</button>
-					<button class="btn btn-danger ml-3">Excluir</button>
+					<!-- <button class="btn btn-warning">Editar</button> -->
+					<!-- <button class="btn btn-danger ml-3">Excluir</button> -->
 				</td>
 			</tr>
 			<?php endforeach; ?>

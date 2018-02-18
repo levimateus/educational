@@ -22,20 +22,20 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"	href="#">Gerenciar</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Meu Perfil</a>
+						<!--<a class="dropdown-item" href="#">Meu Perfil</a>-->
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<?php buildUrl('/course/manage')?>">Cursos</a>
 						<a class="dropdown-item" href="<?php buildUrl('/user/manage')?>">Usuários</a>
 					</div>
 				</li>
 				<?php endif; ?>
-				<li class="nav-item dropdown">
+				<!-- <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"	href="#">Cursos</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="">Exibir Catálogo</a>
 						<a class="dropdown-item" href="">Meus Cursos</a>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 
 			<ul class="nav navbar-nav mr-2">

@@ -2,8 +2,9 @@
 namespace Src\Controllers;
 
 use Core\Controller as MainController;
-use Src\Models\VO\Matter;
+use Src\Models\DAO\CourseDAO;
 use Src\Models\DAO\MatterDAO;
+use Src\Models\DAO\TopicDAO;
 
 class MatterController extends MainController
 {
@@ -61,11 +62,14 @@ class MatterController extends MainController
  		}
 
  		$matterDAO = new MatterDAO();
- 		$matter = new Matter();
+ 		$topicDAO  = new TopicDAO();
+ 		$courseDAO = new CourseDAO();
 
  		$matter = $matterDAO->selectOne($id);
+ 		$topics = $topicDAO->selectByMatter($id);
+ 		$course = $courseDAO->selectOne($matter->getCourseId());
 
- 		$this->view('matter/matter_page', compact('matter'));
+ 		$this->view('matter/matter_page', compact('matter', 'topics', 'course'));
 	}
 
 	public function update(){

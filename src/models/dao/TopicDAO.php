@@ -24,7 +24,7 @@ class TopicDAO extends DAO
 		$userId 		= $topic->getUserId().'';
 		$creationDate 	= $topic->getCreationDate().'';
 		$content		= $topic->getContent().'';
-		$title 		= $topic->getTitle().'';
+		$title 			= $topic->getTitle().'';
 
 		$stmt->bindParam(1, $matterId);
 		$stmt->bindParam(2, $userId);
@@ -33,5 +33,36 @@ class TopicDAO extends DAO
 		$stmt->bindParam(5, $title);
 
 		return $stmt->execute();
+	}
+
+	public function selectByMatter($matterId){
+		$connection = $this->getConnection();
+
+		$stmt = $connection->prepare("
+			SELECT *
+			FROM topics
+			WHERE matter_id = ?");
+
+		$stmt->bindParam(1, $matterId);
+		$stmt->execute();
+
+		if ($stmt->rowCount() > 0) {
+			$result = $stmt->fetchAll();
+			$topics = array();
+
+			foreach ($result as $tuple) {
+				$topic = new Topic();
+
+				$topic->setId($tuple['id']);
+				$topic->setUserId($tuple['user_id']);
+				$topic->setMatterId($tuple['matter_id']);
+				$topic->setCreationDate($tuple['creation_date']);
+				$topic->setContent($tuple['content']);
+				$topic->setTitle($tuple['title']);
+
+				$topics[] = $topic;
+			}
+			return $topics;
+		}
 	}
 }

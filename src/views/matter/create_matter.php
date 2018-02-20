@@ -15,7 +15,9 @@
 		<div class="form-group col-lg-6 col-md-6">
 			<label for="matter_year">Ano <b class="text-danger">*</b></label>
 			<select name="year" id="matter_year" class="form-control" required="required">
-				<option value="2017">2017</option>
+				<?php for ($year = date('Y'); $year >= 1995 ; $year--):?>
+					<option value="<?= $year ?>"><?= $year ?></option>	
+				<?php endfor; ?>
 			</select>
 		</div>
 		<div class="form-group col-lg-6 col-md-6">

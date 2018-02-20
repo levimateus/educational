@@ -32,6 +32,7 @@ class Routes extends MainRoute
 
 		//topics routes
 		$this->call('/topic/store', 'TopicController', 'store');
+		$this->call('/topic/delete', 'TopicController', 'delete');
 
 
 		//do not remove

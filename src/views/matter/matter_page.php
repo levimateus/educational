@@ -16,7 +16,6 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="jumbotron mt-3 mb-3">
-
 				<h1 class="display-4"><?php echo $matter->getName(); ?></span></h1>
 				<p class="lead">
 					<?php echo $matter->getDescription(); ?>
@@ -46,7 +45,7 @@
 
 	<div class="row">
 		<div class="col-lg-3 col-md-3">
-			<nav class="card">
+			<nav class="card mb-3">
 				<div class="card-body">
 					<h5>Tópicos</h5>
 					<ul class="nav">
@@ -98,7 +97,15 @@
 						</h6>
 						
 						<?php echo $topic->getContent(); ?>
-
+						<?php if ($user['role'] == PROJECT_TEACHER): ?>
+							<hr class="my-2">
+							<form action="<?php buildURL('/topic/delete')?>" method="post">
+								<input type="hidden" name="topic_id" value="<?= $topic->getId() ?>">
+								<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
+								<input type="submit" value="Apagar" class="btn btn-danger">
+								<input type="submit" formaction="<?php buildURL('/topic/edit')?>" value="Editar (Em breve)" class="btn btn-warning" disabled>
+							</form>
+						<?php endif; ?>
 					</div>
 				</div>
 			<?php endforeach ?>

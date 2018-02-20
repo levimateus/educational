@@ -50,7 +50,7 @@ class UserController extends MainController
 			(isset($_POST['user_name'])     && !empty($_POST['user_name']))     &&
 			(isset($_POST['password'])      && !empty($_POST['password']))      &&
 			(isset($_POST['register_code']) && !empty($_POST['register_code'])) &&
-			(isset($_POST['role'])          && !empty($_POST['role']))
+			 isset($_POST['role'])
 		) {
 			$user = new User();
 			$user->setName($_POST['name']);

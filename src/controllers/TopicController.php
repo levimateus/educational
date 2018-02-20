@@ -48,9 +48,27 @@ class TopicController extends MainController
 	}
 
 	public function delete(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
+		if (
+			 $this->redirectIfNotAuthenticated('user', '/login') ||
+			($this->requiredUserAccessLevel(PROJECT_TEACHER) == false)
+		){
  			return true;
  		}
+
+ 		$id = $_POST['topic_id'];
+ 		$matterId = $_POST['matter_id'];
+
+ 		$topicDAO = new TopicDAO();
+
+ 		if (isset($_POST['topic_id'])) {
+ 			if ($topicDAO->delete($id)) {
+ 				$this->redirect('/matter-'.$matterId);
+ 			} else {
+ 				echo "It didn't work";
+ 			}
+ 		}
+ 		
+ 		$this->redirect('/matter-'.$matterId);
 	}
 
 	public function show(){
@@ -60,7 +78,10 @@ class TopicController extends MainController
 	}
 
 	public function update(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
+		if (
+			 $this->redirectIfNotAuthenticated('user', '/login') ||
+			($this->requiredUserAccessLevel(PROJECT_TEACHER) == false)
+		){
  			return true;
  		}
 	}

@@ -6,6 +6,20 @@ use Src\Models\VO\Topic;
 
 class TopicDAO extends DAO
 {
+	public function delete($id){
+		$connection = $this->getConnection();
+
+		$stmt = $connection->prepare("
+			DELETE FROM topics
+			WHERE id = ?");
+
+		$stmt->bindParam(1, $id);
+
+		$stmt->execute();
+
+		return true;
+	}
+	
 	public function save(Topic $topic){
 		$connection = $this->getConnection();
 
@@ -65,4 +79,5 @@ class TopicDAO extends DAO
 			return $topics;
 		}
 	}
+
 }

@@ -11,6 +11,9 @@ class Topic extends MainModel
 	private $creationDate;
 	private $title;
 
+	private $matterId;
+	private $userId;
+
 	public function getId(){
 		return $this->id;
 	}
@@ -41,5 +44,21 @@ class Topic extends MainModel
 
 	public function setTitle($title){
 		$this->title = $title;
+	}
+
+	public function getMatterId(){
+		return $this->matterId;
+	}
+
+	public function setMatterId($matterId){
+		$this->matterId = $matterId;
+	}
+
+	public function getUserId(){
+		return $this->userId;
+	}
+
+	public function setUserId($userId){
+		$this->userId = $userId;
 	}
 }

@@ -46,9 +46,11 @@ class MatterDAO extends DAO
 		$connection = $this->getConnection();
 
 		$stmt = $connection->prepare("
-			SELECT *
+			SELECT matters.*, users.name AS user_name
 			FROM matters
-			WHERE id = ?");
+			LEFT JOIN users
+			ON users.id = matters.user_id
+			WHERE matters.id = ?");
 
 		$stmt->bindParam(1, $id);
 		$stmt->execute();
@@ -66,7 +68,7 @@ class MatterDAO extends DAO
 			$matter->setYear($result['matter_year']);
 			$matter->setCourseId($result['course_id']);
 			$matter->setUserId($result['user_id']);
-
+			$matter->setUserName($result['user_name']);
 			return $matter;
 		} else {
 			return false;

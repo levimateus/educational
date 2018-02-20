@@ -60,7 +60,12 @@ class MatterController extends MainController
  			return true;
  		}
 
- 		$this->view('matter/matter_page');
+ 		$matterDAO = new MatterDAO();
+ 		$matter = new Matter();
+
+ 		$matter = $matterDAO->selectOne($id);
+
+ 		$this->view('matter/matter_page', compact('matter'));
 	}
 
 	public function update(){

@@ -1,7 +1,9 @@
 <?php 
 namespace Src\Controllers;
 
-use Core\Controller as MainController
+use Core\Controller as MainController;
+use Src\Models\VO\Topic;
+use Src\Models\DAO\TopicDAO;
 
 class TopicController extends MainController
 {
@@ -13,8 +15,35 @@ class TopicController extends MainController
 	}
 
 	public function store(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
+ 		if (
+			 $this->redirectIfNotAuthenticated('user', '/login') ||
+			($this->requiredUserAccessLevel(PROJECT_TEACHER) == false)
+		){
  			return true;
+ 		}
+
+ 		if (
+ 			(isset($_POST['matter_id']) && !empty($_POST['matter_id'])) &&
+ 			(isset($_POST['title']) && !empty($_POST['title'])) &&
+ 			(isset($_POST['content']) && !empty($_POST['content']))
+ 		) {
+
+ 			$matter = new Topic();
+
+	 		$matter->setMatterId($_POST['matter_id']);
+			$matter->setUserId($_SESSION['user']['id']);
+			$matter->setTitle($_POST['title']);
+			$matter->setContent($_POST['content']);
+
+			$matterDAO = new TopicDAO();
+
+			if ($matterDAO->save($matter)) {
+				$this->redirect('/matter-'.$_POST['matter_id']);
+			} else{
+				echo "It did not work";
+			}	
+ 		} else {
+ 			$this->redirect('/matter-'.$_POST['matter_id']);
  		}
 	}
 

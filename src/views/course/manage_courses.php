@@ -23,8 +23,8 @@
 				<td><?php echo $course['id']; ?></td>
 				<td><a href="<?php buildUrl('/course-'.$course['id']); ?>"><?php echo $course['name']; ?></a></td>
 				<td>
-					<button class="btn btn-warning">Editar</button>
-					<button class="btn btn-danger ml-3">Excluir</button>
+					<!-- <button class="btn btn-warning">Editar</button> -->
+					<!-- <button class="btn btn-danger ml-3">Excluir</button> -->
 				</td>
 			</tr>
 			<?php endforeach; ?>

@@ -30,6 +30,9 @@ class Routes extends MainRoute
 		$this->call('/matter/store', 'MatterController', 'store');
 		$this->call('/matter', 'MatterController', 'show');
 
+		//topics routes
+		$this->call('/topic/store', 'TopicController', 'store');
+
 
 		//do not remove
 		$this->notFoundHttpStatus();

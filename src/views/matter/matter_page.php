@@ -15,7 +15,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<div class="jumbotron mt-3 mb-3">
+			<div class=" my-3">
 				<h1 class="display-4"><?php echo $matter->getName(); ?></span></h1>
 				<p class="lead">
 					<?php echo $matter->getDescription(); ?>

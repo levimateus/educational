@@ -17,6 +17,7 @@ class Routes extends MainRoute
 
 		//user routes
 		$this->call('/user/register', 'UserController');
+		$this->call('/user/delete', 'UserController', 'delete');
 		$this->call('/user/store', 'UserController', 'store');
 		$this->call('/user/manage', 'UserController', 'manage');
 

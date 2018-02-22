@@ -1,6 +1,8 @@
 <?php 
 	ob_end_clean();
 	$title = 'Caderno Digital';
+	$users = $param['users'];
+
 	include PROJECT_VIEWS_DIR.'/template/header.php';
 ?>
 
@@ -21,16 +23,19 @@
 					<th>Ações</th>
 				</tr>
 			</thead>
-			<?php foreach ($param['users'] as $course):?>
+			<?php foreach ($users as $user):?>
 			<tr>
-				<td><?php echo $course['id']; ?></td>
-				<td><?php echo $course['name']; ?></td>
-				<td><?php echo $course['register_code']; ?></td>
-				<td><?php echo $course['user_name']; ?></td>
-				<td><?php echo $course['creation_date']; ?></td>
+				<td><?php echo $user['id']; ?></td>
+				<td><?php echo $user['name']; ?></td>
+				<td><?php echo $user['register_code']; ?></td>
+				<td><?php echo $user['user_name']; ?></td>
+				<td><?php echo $user['creation_date']; ?></td>
 				<td>
-					<!-- <button class="btn btn-warning">Editar</button> -->
-					<!-- <button class="btn btn-danger ml-3">Excluir</button> -->
+					<form method="POST">
+						<input type="hidden" name="id" value="<?= $user['id'] ?>">
+						<input type="submit" formaction="<?php buildUrl('/user/delete'); ?>" class="btn btn-danger ml-3" value="Apagar">
+						<input type="submit" class="btn btn-warning ml-3" value="Editar">
+					</form>
 				</td>
 			</tr>
 			<?php endforeach; ?>

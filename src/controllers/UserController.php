@@ -34,6 +34,30 @@ class UserController extends MainController
  		$this->view('user/manage_users', compact('users'));
 	}
 
+	public function delete(){
+		if (
+			 $this->redirectIfNotAuthenticated('user', '/login') ||
+			($this->requiredUserAccessLevel(PROJECT_ADMIN) == false)
+		) {
+			return true;
+		}
+
+		$userDAO = new UserDAO();
+
+		if (isset($_POST['id'])) {
+			$id = $_POST['id'];
+
+			if ($userDAO->delete($id)) {
+				$this->redirect('/user/manage');
+			} else {
+				echo "It doesn't work";
+			}
+			
+		} else {
+			$this->redirect('/user/manage');
+		}
+	}
+
 	public function store(){
 		if (
 			 $this->redirectIfNotAuthenticated('user', '/login') ||

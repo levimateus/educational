@@ -1,0 +1,17 @@
+Os professores podem cadastrar atividades
+Os professores podem inserir textos
+Os professores podem anexar arquivos pdf, txt etc
+Os professores podem atribuir notas às atividades
+Os professores podem enviar mensagens para os alunos
+
+Os alunos podem enviar atividades em forma de arquivos para o professor
+Os alunos podem responder às atividades de múltipla escolha
+Os alunos podem mandar mensagens para o professor
+Os alunos podem ver suas notas
+
+O sistema deverá ser dividido em cursos
+Cada curso possui um nome e uma descrição
+Os cursos possuem matérias, que por sua vez possuem nome, professor e descriçao
+Cada matéria é dividida em tópicos, em forma de blog.
+
+O sistema deverá contar com um login com senha

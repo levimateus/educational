@@ -66,8 +66,8 @@
 				<div class="card mb-3 px-0">
 					<div class="card-body">
 						<form action="<?php buildURL('/topic/store'); ?>" method="post">
-						<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
-						<h2 class="card-title">Criar novo tópico</h2>
+							<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
+							<h2 class="card-title">Criar novo tópico</h2>
 							<div class="form-group">
 								<label for="title">Título</label>
 								<input type="text" class="form-control" name="title" id="title" placeholder="Informe um título para o tópico" required="required">
@@ -83,55 +83,58 @@
 							<div>
 								<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Anexar conteúdo</button>
 
-								<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-lg">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h3 class="modal-title">Anexar arquivos</h3>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<form action="">
-													<div class="form-group">
-														<label for="">Título</label>
-														<input type="text" class="form-control" placeholder="Título do anexo" required="required">
-													</div>
-													<div class="form-group">
-														<label for="">Arquivos</label>
-														<div class="mb-2" align="center" style="    
-															height: 150px; 
-															border-style: dashed; 
-												            color: #777777;
-												            line-height: 150px;
-												            border-width: thick; 
-												            border-color: #AAAAAA;">
-															Insira aqui o arquivo
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="append_description">Descrição do anexo</label>
-														<textarea name="append_description" id="description" class="form-control" cols="30" rows="10"></textarea>
-														<script>
-															CKEDITOR.replace( 'append_description' );
-														</script>
-													</div>
-													
-													<hr>
-													<input class="btn btn-success float-right" type="submit" value="Confirmar">
-												</form>
-											</div>
-										</div>
-									</div>
+								<div class="form-group my-1">
+									<input type="submit" class="btn btn-success btn-block float-right" value="Confirmar">
 								</div>
-
-								
-							</div>
-							<div class="form-group my-1">
-								<input type="submit" class="btn btn-success btn-block float-right" value="Confirmar">
 							</div>
 						</form>
+							
+				<!-- ATTACHMENT MODAL			ATTACHMENT MODAL -->
+				
+						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3 class="modal-title">Anexar arquivos</h3>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form action="">
+											<div class="form-group">
+												<label for="">Título <b class="text-danger">*</b></label>
+												<input type="text" class="form-control" placeholder="Título do anexo" required="required">
+											</div>
+
+											<div class="form-group">
+												<label for="">Arquivos <b class="text-danger">*</b></label>
+												<div class="mb-2" align="center" style="    
+													height: 150px; 
+													border-style: dashed; 
+										            color: #777777;
+										            line-height: 150px;
+										            border-width: 6px; 
+										            border-color: #AAAAAA;">
+													ARRASTE OS ARQUIVOS PARA CÁ
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="append_description">Descrição do anexo</label>
+												<textarea name="append_description" id="description" class="form-control" cols="30" rows="10"></textarea>
+												<script>
+													CKEDITOR.replace( 'append_description' );
+												</script>
+											</div>
+											
+											<hr>
+											<input class="btn btn-success float-right" type="submit" value="Confirmar">
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			<?php endif ?>

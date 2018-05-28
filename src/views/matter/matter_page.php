@@ -7,14 +7,19 @@
 
 	include PROJECT_VIEWS_DIR.'template/header.php';
 ?>
-
-<?php include PROJECT_VIEWS_DIR.'/template/navbar.php' ?>
+<!-- HEADER TEMPLATE -->
+<?php include PROJECT_VIEWS_DIR.'/template/navbar.php'; ?>
 
 <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 
+<!-- CONTAINTER -->
 <div class="container">
+
+	<!-- ROW -->
 	<div class="row">
 		<div class="col-12">
+
+			<!-- MATTER TITLE AND DESCRIPTION -->
 			<div class=" my-3">
 				<h1 class="display-4"><?php echo $matter->getName(); ?></span></h1>
 				<p class="lead">
@@ -24,6 +29,8 @@
 					<b>Professor: </b><a href=""><?php echo $matter->getUserName(); ?></a>
 				</h5>
 			</div>
+
+			<!-- BREADCRUMB -->
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
@@ -39,15 +46,34 @@
 					</li>
 				</ol>
 			</nav>
-		</div>
 
+		</div>
 	</div>
 
+	<!-- ROW -->
 	<div class="row">
 		<div class="col-lg-3 col-md-3">
+
+			<!-- NAVIGATION -->
 			<nav class="card mb-3">
-				<div class="card-body">
+				<div class="card-body" role="navigation">
+
+					<h5>Administração</h5>
+
+					<ul class="nav">
+						<li class="nav-item">
+							<a href="#" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/notice.png')?>" alt="Notice" width="30">&nbsp Avisos da matéria</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php buildURL('/forum/matter-'.$matter->getId()); ?>" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/users-group.png')?>" alt="Forum" width="30">&nbsp Discussão</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/college-graduationa.png')?>" alt="Notice" width="30">&nbsp Minhas Notas</a>
+						</li>
+					</ul>
+
 					<h5>Tópicos</h5>
+
 					<ul class="nav">
 						<?php foreach ($topics as $topic): ?>
 							<li class="nav-item">
@@ -59,19 +85,25 @@
 					</ul>
 				</div>
 			</nav>
-		</div>
 
+		</div>
+		
+		<!-- TOPICS -->
 		<div class="col-lg-9 col-md-9">
+
+			<!-- NEW TOPIC FORM ONLY FOR TEACHERS -->
 			<?php if ($user['role'] == PROJECT_TEACHER): ?>
 				<div class="card mb-3 px-0">
 					<div class="card-body">
 						<form action="<?php buildURL('/topic/store'); ?>" method="post">
 							<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
 							<h2 class="card-title">Criar novo tópico</h2>
+
 							<div class="form-group">
 								<label for="title">Título</label>
 								<input type="text" class="form-control" name="title" id="title" placeholder="Informe um título para o tópico" required="required">
 							</div>
+
 							<div class="form-group">
 								<label for="content">Conteúdo</label>
 								<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
@@ -79,9 +111,11 @@
 									CKEDITOR.replace( 'content' );
 								</script>
 							</div>
+
 							<hr>
+
 							<div>
-								<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Anexar conteúdo</button>
+								<!--button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Anexar conteúdo</button-->
 
 								<div class="form-group my-1">
 									<input type="submit" class="btn btn-success btn-block float-right" value="Confirmar">
@@ -89,7 +123,7 @@
 							</div>
 						</form>
 							
-				<!-- ATTACHMENT MODAL			ATTACHMENT MODAL -->
+				<!-- ATTACHMENT MODAL			ATTACHMENT MODAL 
 				
 						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
@@ -101,30 +135,20 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										<form action="">
+										<form action="<?php buildURL('/attachment/store');?>" method="POST" enctype="multipart/form-data">
 											<div class="form-group">
-												<label for="">Título <b class="text-danger">*</b></label>
-												<input type="text" class="form-control" placeholder="Título do anexo" required="required">
+												<label for="attachment_title">Título <b class="text-danger">*</b></label>
+												<input type="text" class="form-control" id="attachment_title" name="attachment_title" placeholder="Título do anexo" required="required">
 											</div>
-
 											<div class="form-group">
-												<label for="">Arquivos <b class="text-danger">*</b></label>
-												<div class="mb-2" align="center" style="    
-													height: 150px; 
-													border-style: dashed; 
-										            color: #777777;
-										            line-height: 150px;
-										            border-width: 6px; 
-										            border-color: #AAAAAA;">
-													ARRASTE OS ARQUIVOS PARA CÁ
-												</div>
+												<label for="attachment_file">Arquivo</label>
+												<input type="file" class="form control" id="attachment_file" name="attachment_file">
 											</div>
-
 											<div class="form-group">
-												<label for="append_description">Descrição do anexo</label>
-												<textarea name="append_description" id="description" class="form-control" cols="30" rows="10"></textarea>
+												<label for="attachment_description">Descrição do anexo</label>
+												<textarea id="attachment_description" name="attachment_description" class="form-control" cols="30" rows="10"></textarea>
 												<script>
-													CKEDITOR.replace( 'append_description' );
+													CKEDITOR.replace( 'attachment_description' );
 												</script>
 											</div>
 											
@@ -135,9 +159,12 @@
 								</div>
 							</div>
 						</div>
+						-->
 					</div>
 				</div>
 			<?php endif ?>
+
+			<!-- TOPICS -->
 			<?php foreach ($topics as $topic): ?>		
 				<div class="card mb-3">
 					<div class="card-body">
@@ -161,8 +188,10 @@
 					</div>
 				</div>
 			<?php endforeach ?>
+
 		</div>
 	</div>
 </div>
 
+<!-- FOOTER TEMPLATE -->
 <?php include PROJECT_VIEWS_DIR.'template/footer.php';?>

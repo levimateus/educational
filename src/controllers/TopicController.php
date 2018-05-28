@@ -28,16 +28,16 @@ class TopicController extends MainController
  			(isset($_POST['content']) && !empty($_POST['content']))
  		) {
 
- 			$matter = new Topic();
+ 			$topic = new Topic();
 
-	 		$matter->setMatterId($_POST['matter_id']);
-			$matter->setUserId($_SESSION['user']['id']);
-			$matter->setTitle($_POST['title']);
-			$matter->setContent($_POST['content']);
+	 		$topic->setMatterId($_POST['matter_id']);
+			$topic->setUserId($_SESSION['user']['id']);
+			$topic->setTitle($_POST['title']);
+			$topic->setContent($_POST['content']);
 
-			$matterDAO = new TopicDAO();
+			$topicDAO = new TopicDAO();
 
-			if ($matterDAO->save($matter)) {
+			if ($topicDAO->save($topic)) {
 				$this->redirect('/matter-'.$_POST['matter_id']);
 			} else{
 				echo "It did not work";

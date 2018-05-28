@@ -3,10 +3,7 @@ namespace Src\Controllers;
 
 use Core\Controller as MainController;
 
-/**
-* 
-*/
-class MatterController extends MainController
+class AttachmentController extends MainController
 {
 	
 	public function store(){
@@ -16,6 +13,9 @@ class MatterController extends MainController
 		){
  			return true;
  		} 
+
+ 		$pasta = buildUrl('/uploads/attachments');
+ 		
  	}
 
 	public function update(){

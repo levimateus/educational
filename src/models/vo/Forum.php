@@ -1,16 +1,17 @@
 <?php 
+
 namespace Src\Models\VO;
 
 use Core\Model as MainModel;
 
-class Matter extends MainModel
+class Forum extends MainModel
 {
 	private $id;
-	private $creationDate;
 	private $title;
 	private $description;
-	private $topicId;
 	private $userId;
+	private $matterId;
+	private $creationDate;
 
 	public function getId(){
 		return $this->id;
@@ -18,14 +19,6 @@ class Matter extends MainModel
 
 	public function setId($id){
 		$this->id = $id;
-	}
-
-	public function getCreationDate(){
-		return $this->creationDate;
-	}
-
-	public function setCreationDate($creationDate){
-		$this->creationDate = $creationDate;
 	}
 
 	public function getTitle(){
@@ -42,4 +35,29 @@ class Matter extends MainModel
 
 	public function setDescription($description){
 		$this->description = $description;
+	}
+
+	public function getUserId(){
+		return $this->userId;
+	}
+
+	public function setUserId($userId){
+		$this->userId = $userId;
+	}
+
+	public function getMatterId(){
+		return $this->matterId;
+	}
+
+	public function setMatterId($matterId){
+		$this->matterId = $matterId;
+	}
+
+	public function getCreationDate(){
+		return $this->creationDate;
+	}
+
+	public function setCreationDate($creationDate){
+		$this->creationDate = $creationDate;
+	}
 }

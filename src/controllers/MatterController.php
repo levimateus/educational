@@ -5,6 +5,7 @@ use Core\Controller as MainController;
 use Src\Models\DAO\CourseDAO;
 use Src\Models\DAO\MatterDAO;
 use Src\Models\DAO\TopicDAO;
+use Src\Models\VO\Matter;
 
 class MatterController extends MainController
 {

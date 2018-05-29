@@ -4,12 +4,13 @@
 	$matter = $param['matter'];
 	$topics = $param['topics']; 
 	$course = $param['course'];
-	$forum  = $param['forum'];
-	$posts  = $param['forum_posts'];
+	$thread  = $param['thread'];
+	$answers  = $param['answers'];
 
 	include PROJECT_VIEWS_DIR.'template/header.php';
 ?>
 <?php include PROJECT_VIEWS_DIR.'template/navbar.php'; ?>
+
 
 <!-- CONTAINER -->
 <div class="container">
@@ -53,7 +54,7 @@
 						</a>
 					</li>
 					<li class="breadcrumb-item active" aria-current="page">
-						<?= $forum->getTitle() ?>
+						<?= $thread->getTitle() ?>
 					</li>
 				</ol>
 			</nav>
@@ -101,20 +102,29 @@
 		
 		<!-- COLUMN -->
 		<div class="col-lg-9 col-md-9">
-			<h2><?= $forum->getTitle() ?></h2>
-			<p><?= $forum->getDescription() ?></p>
 
-			<?php if (!empty($posts)): ?>
-				<?php foreach ($posts as $post): ?>
+			<!-- THREAD -->
+			<div class="card">
+				<div class="card-body">
+					<h5> <?= $thread->getTitle() ?></h5>
+					<h6 class="card-subtitle text-muted mb-2">
+						<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
+					</h6>
+					<p> <?= $thread->getContent() ?> </p>
+					<a href="#" class="btn btn-default">Responder</a>
+				</div>
+			</div>
+
+			<!-- ANSWERS -->
+			<?php if (!empty($answers)): ?>
+				<?php foreach ($answers as $answer): ?>
 					<div class="card">
 						<div class="card-body">
 							<h5>Título do post</h5>
-							<p><?= $post->getContent(); ?></p>
+							<p><?= $answer->getContent(); ?></p>
 						</div>
 					</div>
 				<?php endforeach ?>
-			<?php else: ?>
-				<h5>Não há postagens</h5>
 			<?php endif ?>
 		</div>	
 	</div>

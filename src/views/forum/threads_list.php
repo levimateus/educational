@@ -3,12 +3,15 @@
 	$title  = 'Caderno Digital';
 	$course = $param['course'];
 	$matter = $param['matter'];
-	$forums = $param['forums'];
+	$threads = $param['threads'];
 	$topics = $param['topics']; 
 
 	include PROJECT_VIEWS_DIR.'template/header.php';
 ?>
+
 <?php include PROJECT_VIEWS_DIR.'template/navbar.php'; ?>
+
+<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 
 <!-- CONTAINER -->
 <div class="container">
@@ -97,7 +100,7 @@
 		<div class="col-lg-9 col-md-9">
 			<h1>Fórum de discussão</h1>
 
-			<!-- NEW FORUM FORM -->
+			<!-- NEW THREAD FORM -->
 			<?php if ($user['role'] == PROJECT_TEACHER): ?>
 				<h4>Inserir novo tópico</h4>
 
@@ -109,8 +112,11 @@
 					</div>
 
 					<div class="form-group">
-						<label for="description">Descrição</label>
-						<textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+						<label for="content">Conteúdo</label>
+						<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+						<script>
+							CKEDITOR.replace( 'content' );
+						</script>
 					</div>
 
 					<div class="form-group">
@@ -122,7 +128,7 @@
 			<!-- LISTING FORUMS -->
 			<div class="card mb-3">
 				<div class="card-body">
-					<?php if (!empty($forums)): ?>
+					<?php if (!empty($threads)): ?>
 						<table class="table">
 							<tr>
 								<th>Tópico</th>
@@ -130,10 +136,10 @@
 								<th>Respostas</th>
 								<th>Última Mensagens</th>
 							</tr>
-						<?php foreach ($forums as $forum): ?>
+						<?php foreach ($threads as $thread): ?>
 							<tr>
-								<td><a href="<?php buildURL('/forum-'.$forum->getId());?>"><?= $forum->getTitle() ?></a> </td>
-								<td><div><?= $forum->getDescription() ?></div></td>
+								<td><a href="<?php buildURL('/forum-'.$thread->getId());?>"><?= $thread->getTitle() ?></a> </td>
+								<td><div><?= $thread->getContent() ?></div></td>
 								<td>23</td>
 								<td>sad</td>
 							</tr>

@@ -4,11 +4,11 @@ namespace Src\Models\VO;
 
 use Core\Model as MainModel;
 
-class Forum extends MainModel
+class Thread extends MainModel
 {
 	private $id;
 	private $title;
-	private $description;
+	private $content;
 	private $userId;
 	private $matterId;
 	private $creationDate;
@@ -29,12 +29,12 @@ class Forum extends MainModel
 		$this->title = $title;
 	}
 
-	public function getDescription(){
-		return $this->description;
+	public function getContent(){
+		return $this->content;
 	}
 
-	public function setDescription($description){
-		$this->description = $description;
+	public function setContent($content){
+		$this->content = $content;
 	}
 
 	public function getUserId(){

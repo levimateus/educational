@@ -2,9 +2,9 @@
 namespace Src\Controllers;
 
 use Core\Controller as MainController;
-use Src\Models\VO\Forum;
-use Src\Models\DAO\ForumDAO;
-use Src\Models\DAO\ForumPostDAO;
+use Src\Models\VO\Thread;
+use Src\Models\DAO\ThreadDAO;
+use Src\Models\DAO\AnswerDAO;
 use Src\Models\DAO\MatterDAO;
 use Src\Models\DAO\TopicDAO;
 use Src\Models\DAO\CourseDAO;
@@ -18,17 +18,17 @@ class ForumController extends MainController
  		}
 
  		$courseDAO = new CourseDAO();
- 		$forumDAO  = new ForumDAO();
+ 		$threadDAO  = new ThreadDAO();
  		$matterDAO = new MatterDAO();
  		$topicDAO  = new TopicDAO();
 
- 		$forums = $forumDAO->selectByMatter($id);
+ 		$threads = $threadDAO->selectByMatter($id);
 
  		$topics = $topicDAO->selectByMatter($id);
  		$matter = $matterDAO->selectOne($id);
  		$course = $courseDAO->selectOne($matter->getCourseId());
 
- 		$this->view('forum/forums_list', compact('matter', 'topics', 'course', 'forums'));
+ 		$this->view('forum/threads_list', compact('matter', 'topics', 'course', 'threads'));
 
 	}
 
@@ -45,16 +45,16 @@ class ForumController extends MainController
  			(isset($_POST['title']) && !empty($_POST['title']))
  		) {
 
- 			$forum = new Forum();
+ 			$thread = new Thread();
 
-	 		$forum->setMatterId($_POST['matter_id']);
-			$forum->setUserId($_SESSION['user']['id']);
-			$forum->setTitle($_POST['title']);
-			$forum->setDescription($_POST['description']);
+	 		$thread->setMatterId($_POST['matter_id']);
+			$thread->setUserId($_SESSION['user']['id']);
+			$thread->setTitle($_POST['title']);
+			$thread->setContent($_POST['content']);
 
-			$forumDAO = new ForumDAO();
+			$threadDAO = new ThreadDAO();
 
-			if ($forumDAO->save($forum)) {
+			if ($threadDAO->save($thread)) {
 				$this->redirect('/forum/matter-'.$_POST['matter_id']);
 			} else{
 				echo "It did not work";
@@ -79,19 +79,19 @@ class ForumController extends MainController
  			return true;
  		}
 
- 		$forumDAO  = new ForumDAO();
- 		$forumPostDAO = new ForumPostDAO();
+ 		$threadDAO  = new ThreadDAO();
+ 		$answerDAO = new AnswerDAO();
  		$matterDAO = new MatterDAO();
  		$topicDAO  = new TopicDAO();
  		$courseDAO = new CourseDAO();
 
- 		$forum  = $forumDAO->selectOne($id);
- 		$forum_posts = $forumPostDAO->selectByForum($id);
- 		$matter = $matterDAO->selectOne($forum->getMatterId());
- 		$topics = $topicDAO->selectByMatter($matter->getId());
- 		$course = $courseDAO->selectOne($matter->getCourseId());
+ 		$thread  = $threadDAO->selectOne($id);
+ 		$answers = $answerDAO->selectByThread($id);
+ 		$matter  = $matterDAO->selectOne($thread->getMatterId());
+ 		$topics  = $topicDAO->selectByMatter($matter->getId());
+ 		$course  = $courseDAO->selectOne($matter->getCourseId());
 
- 		$this->view('forum/forum_page', compact('matter', 'topics', 'course', 'forum', 'forum_posts'));
+ 		$this->view('forum/thread_page', compact('matter', 'topics', 'course', 'thread', 'answers'));
 	}
 
 	public function update(){

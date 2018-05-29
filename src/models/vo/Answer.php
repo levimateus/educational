@@ -4,14 +4,14 @@ namespace Src\Models\VO;
 
 use Core\Model as MainModel;
 
-class ForumPost extends MainModel
+class Answer extends MainModel
 {
 	private $id;
 	private $content;
-	private $forumId;
-	private $userId;
-	private $postId;
 	private $creationDate;
+	private $userId;
+	private $threadId;
+	private $answerId;
 
 	public function getId(){
 		return $this->id;
@@ -29,12 +29,12 @@ class ForumPost extends MainModel
 		$this->content = $content;
 	}
 
-	public function getForumId(){
-		return $this->forumId;
+	public function getCreationDate(){
+		return $this->creationDate;
 	}
 
-	public function setForumId($forumId){
-		$this->forumId = $forumId;
+	public function setCreationDate($creationDate){
+		$this->creationDate = $creationDate;
 	}
 
 	public function getUserId(){
@@ -45,19 +45,19 @@ class ForumPost extends MainModel
 		$this->userId = $userId;
 	}
 
-	public function getPostId(){
-		return $this->postId;
+	public function getThreadId(){
+		return $this->threadId;
 	}
 
-	public function setPostId($postId){
-		$this->postId = $postId;
+	public function setThreadId($threadId){
+		$this->threadId = $threadId;
 	}
 
-	public function getCreationDate(){
-		return $this->creationDate;
+	public function getAnswerId(){
+		return $this->answerId;
 	}
 
-	public function setCreationDate($creationDate){
-		$this->creationDate = $creationDate;
+	public function setAnswerId($answerId){
+		$this->answerId = $answerId;
 	}
 }

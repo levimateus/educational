@@ -20,15 +20,7 @@
 		<div class="col-12">
 
 			<!-- MATTER TITLE AND DESCRIPTION -->
-			<div class=" my-3">
-				<h1 class="display-4"><?php echo $matter->getName(); ?></span></h1>
-				<p class="lead">
-					<?php echo $matter->getDescription(); ?>
-				</p>
-				<h5 class="display-5">
-					<b>Professor: </b><a href=""><?php echo $matter->getUserName(); ?></a>
-				</h5>
-			</div>
+			<?php include PROJECT_VIEWS_DIR.'/matter/header.php'; ?>
 
 			<!-- BREADCRUMB -->
 			<nav aria-label="breadcrumb">
@@ -134,6 +126,7 @@
 			<?php endif ?>
 
 			<!-- TOPICS -->
+			<?php if (!empty($topics)): ?>
 			<?php foreach ($topics as $topic): ?>		
 				<div class="card mb-3">
 					<div class="card-body">
@@ -157,7 +150,11 @@
 					</div>
 				</div>
 			<?php endforeach ?>
-
+			<?php else: ?>
+				<div class="alert alert-default">
+					Não há tópicos
+				</div>
+			<?php endif ?>
 		</div>
 	</div>
 </div>

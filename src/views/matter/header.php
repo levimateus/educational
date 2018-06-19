@@ -1,4 +1,3 @@
-<!-- MATTER TITLE AND DESCRIPTION -->
 <div class=" my-3">
 	<h1 class="display-4"><?php echo $matter->getName(); ?></span></h1>
 	<p class="lead">

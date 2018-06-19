@@ -4,7 +4,7 @@
 	include PROJECT_VIEWS_DIR.'template/header.php';
 ?>
 
-<?php include PROJECT_VIEWS_DIR.'template/navbar.php' ?>
+<?php include PROJECT_VIEWS_DIR.'template/navbar.php'; ?>
 
 <div class="container">
 	<h1 class="mt-3">Novo Curso</h1>

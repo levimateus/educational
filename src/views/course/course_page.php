@@ -53,9 +53,6 @@
 			</div>
 		<?php endforeach; ?>
 	<?php endif; ?>
-	
-
-	
 </div>
 
 <?php include PROJECT_VIEWS_DIR.'template/footer.php';?>

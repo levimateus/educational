@@ -38,18 +38,16 @@ class Routes extends MainRoute
 		$this->call('/topic/delete', 'TopicController', 'delete');
 		$this->call('/topic/store', 'TopicController', 'store');
 
+		//notices routes
+		$this->call('/notice/matter', 'NoticeController');
+		$this->call('/notice/delete', 'NoticeController', 'delete');
+		$this->call('/notice/store', 'NoticeController', 'store');
+
 		//user routes
 		$this->call('/user/delete', 'UserController', 'delete');
 		$this->call('/user/manage', 'UserController', 'manage');
 		$this->call('/user/register', 'UserController');
 		$this->call('/user/store', 'UserController', 'store');
-
-		
-
-		
-
-		
-
 
 		//do not remove
 		$this->notFoundHttpStatus();

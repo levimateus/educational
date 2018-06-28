@@ -75,25 +75,45 @@
 						<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
 					</h6>
 					<p> <?= $thread->getContent() ?> </p>
-					<a href="#" class="btn btn-default">Responder</a>
+					<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#thread_answer_modal">Responder</button>
 				</div>
 			</div>
 
-			<div class="card mb-2">
-				<div class="card-body">
-					<form method="POST" action="<?php buildURL('/forum/answer/store');?>">
-						<input type="hidden" name="thread_id" value="<?= $thread->getId()?>">
-						<div class="form-group">
-							<label for="content">Conteúdo</label>
-							<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
-							<script>
-								CKEDITOR.replace( 'content' );
-							</script>
+			<!-- ANSWER MODAL -->
+
+			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="thread_answer_modal">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Responder</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-						<div class="form-group">
-							<input type="submit" value="Confirmar" class="btn btn-success">
+						<form method="POST" action="<?php buildURL('/forum/answer/store');?>">
+							<div class="modal-body">
+								<div class="form-group">
+									<input type="hidden" name="thread_id" value="<?= $thread->getId()?>">
+									<label>Título</label>
+									<input type="text" name="title" class="form-control" disabled="disabled">
+								</div>
+								<div class="form-group">
+									<label for="content">Conteúdo</label>
+									<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+									<script>
+										CKEDITOR.replace( 'content' );
+									</script>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" value="Confirmar" class="btn btn-success">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+							</div>
+						</form>
+						<div class="modal-footer">
+							
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 
@@ -107,9 +127,52 @@
 								<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
 							</h6>
 							<p><?= $answer->getContent(); ?></p>
-							<a href="#" class="btn btn-default">Responder</a>
+							<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#answer_modal_<?= $answer->getId() ?>">Responder</button>
 						</div>
 					</div>
+
+					<!-- ANSWER MODAL -->
+
+					<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="answer_modal_<?= $answer->getId() ?>">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Responder post <?= $answer->getId() ?> </h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form method="POST" action="<?php buildURL('/forum/answer/store');?>">
+									<div class="modal-body">
+										<div class="form-group">
+											<input type="hidden" name="thread_id" value="<?= $thread->getId()?>">
+											<label>Título</label>
+											<input type="text" name="title" class="form-control" disabled="disabled">
+										</div>
+										<div class="form-group">
+											<label for="content">Conteúdo</label>
+											<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+											<script>
+												CKEDITOR.replace( 'content' );
+											</script>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<input type="submit" value="Confirmar" class="btn btn-success">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+									</div>
+								</form>
+								<div class="modal-footer">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
 				<?php endforeach ?>
 			<?php endif ?>
 		</div>	

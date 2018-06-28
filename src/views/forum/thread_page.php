@@ -124,6 +124,13 @@
 							</h6>
 							<p><?= $answer->getContent(); ?></p>
 							<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#thread_answer_modal">Citar</button>
+
+							<?php if ($user['role'] == PROJECT_TEACHER): ?>
+							
+							<a href="<?php buildURL('/forum/answer/delete'); ?>" class="block-right btn btn-danger">Excluir</a>
+								
+							<?php endif ?>
+
 						</div>
 					</div>
 				<?php endforeach ?>

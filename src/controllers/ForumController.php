@@ -80,12 +80,6 @@ class ForumController extends MainController
 	 		$answer->setUserId($_SESSION['user']['id']);
 	 		$answer->setThreadId($_POST['thread_id']);
 
-	 		if (isset($_POST['answer_id']) && !empty('answer_id')) {
-	 			$answer->setAnswerId($_POST['answer_id']);	
-	 		} else {
-	 			$answer->setAnswerId('');
-	 		}
-
 	 		$answerDAO = new AnswerDAO();
 
 	 		if ($answerDAO->save($answer)) {
@@ -105,6 +99,19 @@ class ForumController extends MainController
 		){
  			return true;
  		}
+ 		
+ 		echo "Função ainda não implementada";
+	}
+
+	public function deleteAnswer(){
+		if (
+			 $this->redirectIfNotAuthenticated('user', '/login') ||
+			($this->requiredUserAccessLevel(PROJECT_TEACHER) == false)
+		){
+ 			return true;
+ 		}
+
+ 		echo "Função ainda não implementada";
 	}
 
 	public function show($id){

@@ -7,12 +7,14 @@
 				<a href="<?php buildURL('/matter-'.$matter->getId());?>" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/home.png')?>" alt="Forum" width="30">&nbsp Página Inicial</a>
 			</li>
 			<li class="nav-item">
+				<a href="<?php buildURL('/matter-'.$matter->getId());?>" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/home.png')?>" alt="Forum" width="30">&nbsp Tópicos</a>
+			</li>
+			<li class="nav-item">
 				<a href="<?php buildURL('/notice/matter-'.$matter->getId()); ?>" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/notice.png')?>" alt="Notice" width="30">&nbsp Avisos da matéria</a>
 			</li>
 			<li class="nav-item">
 				<a href="<?php buildURL('/forum/matter-'.$matter->getId()); ?>" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/users-group.png')?>" alt="Forum" width="30">&nbsp Discussão</a>
 			</li>
-			
 			<li class="nav-item">
 				<a href="#" class="nav-link"><img class="img-fluid" src="<?php buildURL('/assets/images/application/icons/college-graduationa.png')?>" alt="Notice" width="30">&nbsp Minhas Notas</a>
 			</li>

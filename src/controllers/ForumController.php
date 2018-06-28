@@ -2,6 +2,7 @@
 namespace Src\Controllers;
 
 use Core\Controller as MainController;
+use Src\Models\VO\Answer;
 use Src\Models\VO\Thread;
 use Src\Models\DAO\ThreadDAO;
 use Src\Models\DAO\AnswerDAO;
@@ -62,8 +63,40 @@ class ForumController extends MainController
  		} else {
  			$this->redirect('/forum/matter-'.$_POST['matter_id']);
  		}
- 		
-	}
+	}	
+
+	public function storeAnswer(){
+		if ($this->redirectIfNotAuthenticated('user', '/login')){
+ 			return true;
+ 		}
+
+ 		$answer = new Answer();
+
+ 		if (
+ 			(isset($_POST['content']) && isset($_POST['thread_id'])) &&
+ 			(!empty($_POST['content']) && !empty($_POST['thread_id']))
+ 		) {
+ 			$answer->setContent($_POST['content']);
+	 		$answer->setUserId($_SESSION['user']['id']);
+	 		$answer->setThreadId($_POST['thread_id']);
+
+	 		if (isset($_POST['answer_id']) && !empty('answer_id')) {
+	 			$answer->setAnswerId($_POST['answer_id']);	
+	 		} else {
+	 			$answer->setAnswerId('');
+	 		}
+
+	 		$answerDAO = new AnswerDAO();
+
+	 		if ($answerDAO->save($answer)) {
+				$this->redirect('/forum-'.$_POST['thread_id']);
+			} else{
+				echo "It did not work";
+			}
+ 		} else {
+ 			$this->redirect('/forum-'.$_POST['thread_id']);
+ 		}
+	}	
 
 	public function delete(){
 		if (

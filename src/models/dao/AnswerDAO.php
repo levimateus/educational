@@ -15,24 +15,38 @@ class AnswerDAO extends DAO
 
 		$answer->setCreationDate($date);
 
-		$stmt = $connection->prepare("
-			INSERT INTO answers(
-				content, creation_date, user_id, thread_id, answer_id
-			) VALUES (?, ?, ?, ?, ?)");
-
-		$content = $answer->getContent().'';
+		$content 		= $answer->getContent().'';
 		$creationDate 	= $answer->getCreationDate().'';
 		$userId 		= $answer->getUserId().'';
 		$threadId 		= $answer->getThreadId().'';
 		$answerId   	= $answer->getAnswerId().'';
 
-		$stmt->bindParam(1, $content);
-		$stmt->bindParam(2, $creationDate);
-		$stmt->bindParam(3, $userId);
-		$stmt->bindParam(4, $threadId);
-		$stmt->bindParam(5, $answerId);
+		if ($answer->getAnswerId() == '') {
+			$stmt = $connection->prepare("
+				INSERT INTO answers(
+					content, creation_date, user_id, thread_id
+				) VALUES (?, ?, ?, ?)");
 
-		return $stmt->execute();
+			$stmt->bindParam(1, $content);
+			$stmt->bindParam(2, $creationDate);
+			$stmt->bindParam(3, $userId);
+			$stmt->bindParam(4, $threadId);
+
+			return $stmt->execute();
+		} else {
+			$stmt = $connection->prepare("
+				INSERT INTO answers(
+					content, creation_date, user_id, thread_id, answer_id
+				) VALUES (?, ?, ?, ?, ?)");
+
+			$stmt->bindParam(1, $content);
+			$stmt->bindParam(2, $creationDate);
+			$stmt->bindParam(3, $userId);
+			$stmt->bindParam(4, $threadId);
+			$stmt->bindParam(5, $answerId);
+
+			return $stmt->execute();
+		}
 	}
 
 	public function selectOne($id){

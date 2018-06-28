@@ -11,6 +11,8 @@
 ?>
 <?php include PROJECT_VIEWS_DIR.'template/navbar.php'; ?>
 
+<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+
 
 <!-- CONTAINER -->
 <div class="container">
@@ -56,7 +58,7 @@
 	<!-- ROW -->
 	<div class="row">
 
-		<!-- COLUMN -->
+		<!-- NAVIGATION -->
 		<div class="col-lg-3 col-md-3">
 			<?php require PROJECT_VIEWS_DIR.'/template/navigation.php'; ?>
 			<?php require PROJECT_VIEWS_DIR.'/template/calendar.php'; ?>
@@ -66,7 +68,7 @@
 		<div class="col-lg-9 col-md-9">
 
 			<!-- THREAD -->
-			<div class="card">
+			<div class="card mb-2">
 				<div class="card-body">
 					<h5> <?= $thread->getTitle() ?></h5>
 					<h6 class="card-subtitle text-muted mb-2">
@@ -77,13 +79,31 @@
 				</div>
 			</div>
 
+			<div class="card mb-2">
+				<div class="card-body">
+					<form method="POST" action="<?php buildURL('/forum/answer/store');?>">
+						<input type="hidden" name="thread_id" value="<?= $thread->getId()?>">
+						<div class="form-group">
+							<label for="content">Conteúdo</label>
+							<textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+							<script>
+								CKEDITOR.replace( 'content' );
+							</script>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Confirmar" class="btn btn-success">
+						</div>
+					</form>
+				</div>
+			</div>
+
 			<!-- ANSWERS -->
 			<?php if (!empty($answers)): ?>
 				<?php foreach ($answers as $answer): ?>
-					<div class="card">
+					<div class="card mb-2">
 						<div class="card-body">
-							<h5>Título do post</h5>
 							<p><?= $answer->getContent(); ?></p>
+							<a href="#" class="btn btn-default">Responder</a>
 						</div>
 					</div>
 				<?php endforeach ?>

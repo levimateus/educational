@@ -102,6 +102,10 @@
 				<?php foreach ($answers as $answer): ?>
 					<div class="card mb-2">
 						<div class="card-body">
+							<h5>Re: Lorem Ipsum</h5>
+							<h6 class="card-subtitle text-muted mb-2">
+								<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
+							</h6>
 							<p><?= $answer->getContent(); ?></p>
 							<a href="#" class="btn btn-default">Responder</a>
 						</div>

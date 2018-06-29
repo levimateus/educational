@@ -44,8 +44,9 @@ private $dbDriver;
 	            )
 			);
 			$this->connection =  $connection;
-		} catch (Exception $e) {
-			return $e;
+		} catch (PDOException $e) {
+			echo 'Error: '.$e->getMessage();
+			exit();	
 		}
 	}
 

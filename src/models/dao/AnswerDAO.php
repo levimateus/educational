@@ -91,4 +91,18 @@ class AnswerDAO extends DAO
 			return $answers;
 		}
 	}
+
+	public function delete($id){
+		$connection = $this->getConnection();
+
+		$stmt = $connection->prepare("
+			DELETE 
+			FROM answers 
+			WHERE id = ?");
+
+		$stmt->bindParam(1, $id);
+		$stmt->execute();
+
+		return true;
+	}
 }

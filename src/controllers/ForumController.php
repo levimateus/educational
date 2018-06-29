@@ -99,8 +99,19 @@ class ForumController extends MainController
 		){
  			return true;
  		}
+
+ 		$ids = $_POST['id'];
+ 		$matterId = $_POST['matter_id'];
+
+ 		$threadDAO = new ThreadDAO();
+
+ 		if (!empty($ids)) {
+	 		foreach ($ids as $id) {
+	 			$threadDAO->delete($id);
+	 		}	
+ 		}
  		
- 		echo "Função ainda não implementada";
+		$this->redirect('/forum/matter-'.$matterId);
 	}
 
 	public function deleteAnswer(){
@@ -111,7 +122,13 @@ class ForumController extends MainController
  			return true;
  		}
 
- 		echo "Função ainda não implementada";
+ 		$id = $_POST['id'];
+ 		$threadId = $_POST['thread_id'];
+
+ 		$answerDAO = new AnswerDAO();
+ 		$answerDAO->delete($id);
+
+		$this->redirect('/forum-'.$threadId);
 	}
 
 	public function show($id){

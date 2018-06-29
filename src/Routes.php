@@ -28,7 +28,10 @@ class Routes extends MainRoute
 		//forum routes
 		$this->call('/forum', 'ForumController', 'show');
 		$this->call('/forum/matter', 'ForumController');
+
 		$this->call('/forum/store', 'ForumController', 'store');
+		$this->call('/forum/delete', 'ForumController', 'delete');
+
 		$this->call('/forum/answer/store', 'ForumController', 'storeAnswer');
 		$this->call('/forum/answer/delete', 'ForumController', 'deleteAnswer');
 

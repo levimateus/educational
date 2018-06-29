@@ -74,8 +74,8 @@
 						<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
 					</h6>
 					<p> <?= $thread->getContent() ?> </p>
-					<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#thread_answer_modal">Responder</button>
-					<a class="btn btn-outline-success" href="#">Citar</a>
+					<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#thread_answer_modal">Responder</button>
+					<a class="btn btn-outline-success btn-sm" href="#">Citar</a>
 			</div>
 
 			<!-- ANSWER MODAL -->
@@ -105,8 +105,8 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<input type="submit" value="Confirmar" class="btn btn-success">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+								<input type="submit" value="Confirmar" class="btn btn-success btn-sm">
+								<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
 							</div>
 						</form>
 					</div>
@@ -123,12 +123,17 @@
 								<?php echo 'Publicado em '.strftime('%d de %B de %Y, às %Hh%Mmin', strtotime($thread->getCreationDate())); ?>
 							</h6>
 							<p><?= $answer->getContent(); ?></p>
-							<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#thread_answer_modal">Citar</button>
 
 							<?php if ($user['role'] == PROJECT_TEACHER): ?>
-							
-							<a href="<?php buildURL('/forum/answer/delete'); ?>" class="block-right btn btn-danger">Excluir</a>
+							<form action="<?php buildURL('/forum/answer/delete'); ?>" method="post">
+								<input type="hidden" name="id" value="<?= $answer->getId() ?>">
+								<input type="hidden" name="thread_id" value="<?= $thread->getId() ?>">
 								
+								<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#thread_answer_modal">Citar</button>
+								<input type="submit" value="Excluir" class="btn btn-outline-danger btn-sm">
+							</form>
+							<?php else: ?>
+								<button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#thread_answer_modal">Citar</button>
 							<?php endif ?>
 
 						</div>

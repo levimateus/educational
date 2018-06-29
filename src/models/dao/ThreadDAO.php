@@ -6,6 +6,20 @@ use Src\Models\VO\Thread;
 
 class ThreadDAO extends DAO
 {
+	public function delete($id){
+		$connection = $this->getConnection();
+
+		$stmt = $connection->prepare("
+			DELETE FROM threads, answers
+			USING threads, answers
+			WHERE threads.id = ? OR answers.thread_id = ?");
+
+		$stmt->bindParam(1, $id);
+		$stmt->bindParam(2, $id);
+		$stmt->execute();
+
+		return true;
+	}
 	public function save(Thread $thread){
 		$connection = $this->getConnection();
 

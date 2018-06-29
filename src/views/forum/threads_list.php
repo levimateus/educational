@@ -87,18 +87,57 @@
 				</form>
 			<?php endif; ?>
 
-			<!-- CONTROL PANEL -->
-			<form action="<?php buildURL('/forum/delete'); ?>" method="post">
-				<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
-				<div class="card mb-3">
-					<div class="card-body">
-						<div class="form-group">
-							<input type="submit" id="delete" value="Excluir selecionados" class="btn btn-danger btn-sm">
+			<?php if ($user['role'] == PROJECT_TEACHER): ?>
+				
+				<!-- CONTROL PANEL -->
+				<form action="<?php buildURL('/forum/delete'); ?>" method="post">
+					<input type="hidden" name="matter_id" value="<?= $matter->getId() ?>">
+					<div class="card mb-3">
+						<div class="card-body">
+							<div class="form-group">
+								<input type="submit" id="delete" value="Excluir selecionados" class="btn btn-danger btn-sm">
+							</div>
+							
 						</div>
-						
 					</div>
-				</div>
 
+					<!-- LISTING FORUMS -->
+					<div class="card mb-3">
+						<div class="card-body">
+							<?php if (!empty($threads)): ?>
+								<table class="table">
+									<tr>
+										<th>Tópico</th>
+										<th>Descrição</th>
+										<th>Última resposta</th>
+									</tr>
+								<?php foreach ($threads as $thread): ?>
+									<tr>
+										<td>
+											<input type="checkbox" name="id[]" value="<?= $thread->getId() ?>">
+											<a href="<?php buildURL('/forum-'.$thread->getId());?>">
+												<?= $thread->getTitle() ?>
+											</a>
+										</td>
+
+										<td>
+											<?= mb_strimwidth($thread->getContent(), 0, 140, ' (...) ') ?>
+										</td>
+
+										<td>
+											23
+										</td>	
+									</tr>
+								<?php endforeach; ?>
+								</table>
+								
+							<?php else: ?>
+								<p>Não há tópicos</p>
+							<?php endif; ?>
+						</div>
+					</div>
+				</form>
+			<?php else: ?>
 				<!-- LISTING FORUMS -->
 				<div class="card mb-3">
 					<div class="card-body">
@@ -112,7 +151,6 @@
 							<?php foreach ($threads as $thread): ?>
 								<tr>
 									<td>
-										<input type="checkbox" name="id[]" value="<?= $thread->getId() ?>">
 										<a href="<?php buildURL('/forum-'.$thread->getId());?>">
 											<?= $thread->getTitle() ?>
 										</a>
@@ -134,7 +172,7 @@
 						<?php endif; ?>
 					</div>
 				</div>
-			</form>
+			<?php endif ?>
 		</div>	
 	</div>
 </div>

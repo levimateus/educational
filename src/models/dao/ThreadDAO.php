@@ -10,12 +10,17 @@ class ThreadDAO extends DAO
 		$connection = $this->getConnection();
 
 		$stmt = $connection->prepare("
-			DELETE FROM threads, answers
-			USING threads, answers
-			WHERE threads.id = ? OR answers.thread_id = ?");
+			DELETE FROM answers
+			WHERE thread_id = ? ");
 
 		$stmt->bindParam(1, $id);
-		$stmt->bindParam(2, $id);
+		$stmt->execute();
+
+		$stmt = $connection->prepare("
+			DELETE FROM threads
+			WHERE id = ? ");
+
+		$stmt->bindParam(1, $id);
 		$stmt->execute();
 
 		return true;

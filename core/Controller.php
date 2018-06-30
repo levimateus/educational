@@ -30,7 +30,7 @@ abstract class Controller
 	}
 
 	protected function redirect($uri){
-		header('Location: /educational'.$uri);
+		header('Location: '.$uri);
 	}
 
 	protected function redirectIfAuthenticated($sessionKey, $redirect){

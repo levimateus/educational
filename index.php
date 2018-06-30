@@ -2,7 +2,6 @@
 header('Content-Type: text/html; charset=utf-8');
 
 require 'core/Autoload.php';
-require 'vendor/autoload.php';
 require_once 'src/config.php';
 
 function buildUrl($url){

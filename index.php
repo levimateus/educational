@@ -5,11 +5,7 @@ require 'core/Autoload.php';
 require_once 'src/config.php';
 
 function buildUrl($url){
-	$root = explode('/', $_SERVER['PHP_SELF']);
-	$root = '/'.$root[1];
-	$root = $root.$url;
-
-	echo $root;
+	echo $url;
 }
 
 define('PROJECT_ASSETS_DIR', __DIR__.'/assets/');

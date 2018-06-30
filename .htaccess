@@ -3,4 +3,4 @@ Options -Indexes
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /educational/index.php?url=$1 [L]
+RewriteRule ^(.*)$ /index.php?url=$1 [L]

@@ -18,6 +18,9 @@ class Routes extends MainRoute
 		$this->call('/authenticate', 'AuthController', 'authenticate');
 		$this->call('/login', 'AuthController', 'login');
 		$this->call('/logout', 'AuthController', 'logout');
+		
+		$this->call('/password/forgot', 'AuthController', 'forgotPassword');
+		$this->call('/password/redefine', 'AuthController', 'sendPasswordRedefinitionEmail');
 
 		//course routes
 		$this->call('/course', 'CourseController', 'show');

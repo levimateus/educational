@@ -21,6 +21,22 @@ class AuthController extends MainController
 		$this->view('home', compact('courses'));
 	}
 
+	public function forgotPassword(){
+		if ($this->redirectIfAuthenticated('user', '/')){
+ 			return true;
+ 		}
+
+ 		$this->view('redefine_password');
+	}
+
+	public function sendPasswordRedefinitionEmail(){
+		if ($this->redirectIfAuthenticated('user', '/')){
+ 			return true;
+ 		}
+
+ 		echo "Enviado";
+	}
+
 	public function login($fail){
 		if ($this->redirectIfAuthenticated('user', '/')){
  			return true;

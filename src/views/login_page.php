@@ -22,7 +22,7 @@
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-info btn-block" value="Entrar"><br>
-				<a href="">Esqueci minha senha</a>
+				<a href="<?php buildUrl('/password/forgot'); ?>">Esqueci minha senha</a>
 			</div>
 		</form>
 		

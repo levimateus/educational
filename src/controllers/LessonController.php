@@ -1,7 +1,7 @@
 <?php 
 namespace Src\Controllers;
 
-use Core\Controller as MainController
+use Core\Controller as MainController;
 use Src\Models\VO\Matter;
 use Src\Models\DAO\MatterDAO;
 

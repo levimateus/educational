@@ -3,5 +3,5 @@
 define('PROJECT_DBDRIVER', 'mysql');
 define('PROJECT_DBHOST', 'localhost');
 define('PROJECT_DBNAME', 'educational');
-define('PROJECT_DBUSER', 'xxx');
-define('PROJECT_DBPASSWORD', 'xxx');
+define('PROJECT_DBUSER', 'mateus');
+define('PROJECT_DBPASSWORD', 'password');

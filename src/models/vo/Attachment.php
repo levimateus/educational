@@ -42,4 +42,5 @@ class Matter extends MainModel
 
 	public function setDescription($description){
 		$this->description = $description;
+	}
 }

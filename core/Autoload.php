@@ -1,5 +1,4 @@
 <?php
-
 spl_autoload_register(function($class){
 	$fields = explode('\\', $class);
 
@@ -12,5 +11,9 @@ spl_autoload_register(function($class){
 	
 	$path = implode('/', $fields);
 
-	require $path.'.php';
+	require ROOT_DIR.$path.'.php';
 });
+
+function buildUrl($url){
+	echo $url;
+}

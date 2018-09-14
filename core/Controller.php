@@ -22,21 +22,22 @@ abstract class Controller
 
 	private function internalServerErrorHttpStatus(){
 		header('HTTP/1.1 500 Internal Server Error');
-		return null;
+		exit();
 	}
 
 	public function forbiddenHttpStatus(){
 		header('HTTP/1.1 403 Forbidden');
+		exit();
 	}
 
 	protected function redirect($uri){
 		header('Location: '.$uri);
+		exit();
 	}
 
 	protected function redirectIfAuthenticated($sessionKey, $redirect){
 		if ($this->verifySession($sessionKey) == true) {
 			$this->redirect($redirect);
-			return true;
 		} else {
 			return false;
 		}
@@ -45,7 +46,6 @@ abstract class Controller
 	protected function redirectIfNotAuthenticated($sessionKey, $redirect){
 		if ($this->verifySession($sessionKey) == false) {
 			$this->redirect($redirect);
-			return true;
 		} else {
 			return false;
 		}

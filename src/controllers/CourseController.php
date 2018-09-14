@@ -73,9 +73,7 @@ class CourseController extends MainController
 	}
 
 	public function show($id){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		if (!isset($id)) {
  			$this->forbiddenHttpStatus();

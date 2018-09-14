@@ -10,9 +10,7 @@ use Src\Models\DAO\CourseDAO;
 class AuthController extends MainController
 {
 	public function index(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		$courseDAO = new CourseDAO();
 
@@ -22,33 +20,25 @@ class AuthController extends MainController
 	}
 
 	public function forgotPassword(){
-		if ($this->redirectIfAuthenticated('user', '/')){
- 			return true;
- 		}
+		$this->redirectIfAuthenticated('user', '/');
 
  		$this->view('redefine_password');
 	}
 
 	public function sendPasswordRedefinitionEmail(){
-		if ($this->redirectIfAuthenticated('user', '/')){
- 			return true;
- 		}
+		$this->redirectIfAuthenticated('user', '/');
 
  		echo "Enviado";
 	}
 
 	public function login($fail){
-		if ($this->redirectIfAuthenticated('user', '/')){
- 			return true;
- 		}
+		$this->redirectIfAuthenticated('user', '/');
 		
 		$this->view('login_page', $fail);
 	}
 
 	public function authenticate(){
-		if ($this->redirectIfAuthenticated('user', '/')){
- 			return true;
- 		}
+		$this->redirectIfAuthenticated('user', '/');
 
 		$userDAO = new UserDAO();
 
@@ -75,9 +65,8 @@ class AuthController extends MainController
 	}
 
 	public function logout(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
+
 		$this->destroySession('user');
 		$this->redirect('/');
 		return false;

@@ -14,9 +14,7 @@ class ForumController extends MainController
 {
 
 	public function index($id){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		$courseDAO = new CourseDAO();
  		$threadDAO  = new ThreadDAO();
@@ -66,9 +64,7 @@ class ForumController extends MainController
 	}	
 
 	public function storeAnswer(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		$answer = new Answer();
 
@@ -132,9 +128,7 @@ class ForumController extends MainController
 	}
 
 	public function show($id){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		$threadDAO  = new ThreadDAO();
  		$answerDAO = new AnswerDAO();

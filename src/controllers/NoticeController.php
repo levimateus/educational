@@ -10,10 +10,8 @@ use Src\Models\DAO\CourseDAO;
 class NoticeController extends MainController
 {
 	public function index($id){
- 		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
-
+		$this->redirectIfNotAuthenticated('user', '/login');
+		 
  		$matterDAO = new MatterDAO();
  		$noticeDAO  = new NoticeDAO();
  		$courseDAO = new CourseDAO();
@@ -83,9 +81,7 @@ class NoticeController extends MainController
 	}
 
 	public function show(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 	}
 
 	public function update(){

@@ -58,9 +58,7 @@ class MatterController extends MainController
 	}
 
 	public function show($id){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 
  		$matterDAO = new MatterDAO();
  		$topicDAO  = new TopicDAO();

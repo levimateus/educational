@@ -9,9 +9,7 @@ class LessonsController extends MainController
 {
 	public function index(){
 		//creation form
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 	}
 
 	public function store(){
@@ -34,9 +32,7 @@ class LessonsController extends MainController
 	}
 
 	public function show(){
-		if ($this->redirectIfNotAuthenticated('user', '/login')){
- 			return true;
- 		}
+		$this->redirectIfNotAuthenticated('user', '/login');
 	}
 
 	public function update(){

@@ -52,12 +52,12 @@ abstract class Route
 
 	protected function notFoundHttpStatus(){
 		header("HTTP/1.0 404 Not Found");
-		return null;
+		exit();
 	}
 
 	protected function internalServerErrorHttpStatus(){
 		header('HTTP/1.1 500 Internal Server Error');
-		return null;
+		exit();
 	}
 
 	protected function callControllerMethod($class, $method, $argument = null){
@@ -66,7 +66,6 @@ abstract class Route
 			return call_user_func(array($object, $method), $argument);
 		} else {
 			$this->internalServerErrorHttpStatus();
-			return null;
 		}
 	}
 }

@@ -8,7 +8,7 @@
 	<div class="card mx-auto p-4 mt-3" style="max-width: 350px;">
 		<form action="<?php buildURL('/password/redefine'); ?>" method="post">
 			<div class="form-group">
-				<p>Enviaremos o link de redefinição de senha em teu e-mail.</p>
+				<p>Você receberá o <i>link</i> de redefinição de senha em seu <i>e-mail</i></p>
 				<label for="email">E-mail:</label>
 				<input type="email" name="email" id="email" class="form-control" autofocus="autofocus" placeholder="E-mail" required="required">
 			</div>
